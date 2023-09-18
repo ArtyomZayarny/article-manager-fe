@@ -13,6 +13,7 @@ type Props = {
     id: string;
     title: string;
     description: string;
+    createDateTime: string;
   };
 };
 
@@ -23,13 +24,16 @@ export const Article = ({ article }: Props) => {
   const pathname = usePathname();
   const isAdminPage = useMemo(() => pathname.includes("admin"), [pathname]);
 
-  const handleEdit = (id, values) => {
+  const handleEdit = (
+    id: string,
+    values: { title: string; description: string }
+  ) => {
     setModalType("edit");
-    setInputs({ id, values });
+    setInputs(id, values);
     setOpen(true);
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id: string) => {
     try {
       const res = await fetchData(
         `http://localhost:3001/articles/${id}`,

@@ -31,7 +31,7 @@ export const ArticlesContextProvider = ({ children }: Props) => {
   //Manage articles from DB
   const { articles, loading, setArticles } = useArticles();
   const [dateSort, setDateSort] = useState("newest");
-  const [storedArticles, setStoredArticles] = useState([]);
+  const [storedArticles, setStoredArticles] = useState<IArticle[]>([]);
   const [searchString, setSearchString] = useState("");
 
   useEffect(() => {
@@ -52,13 +52,13 @@ export const ArticlesContextProvider = ({ children }: Props) => {
 
   const addArticle = useCallback(
     (article: IArticle) => {
-      setArticles<IArticle[]>((prevArticles) => [...prevArticles, article]);
+      setArticles((prevArticles) => [...prevArticles, article]);
     },
     [setArticles]
   );
 
   const updateArticle = useCallback(
-    (id, data) => {
+    (id: string, data: IArticle) => {
       const updatedArticles = articles.map((article) => {
         if (article.id === id) {
           article.title = data.title;
