@@ -11,7 +11,7 @@ export const useArticles = () => {
     async function getArticles() {
       try {
         const articles = await fetchData(
-          "http://localhost:3001/articles",
+          `${process.env.API_ENDPOINT}/articles`,
           "GET"
         );
         articles && setArticles(articles);

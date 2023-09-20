@@ -29,7 +29,7 @@ export const AddArticleForm = ({ handleClose }: Props) => {
   const handleCreateArticle: SubmitHandler<Inputs> = useCallback(
     async (data) => {
       try {
-        const res = await fetchData("http://localhost:3001/articles", "POST", {
+        const res = await fetchData(`${process.env.API_ENDPOINT}/articles`, "POST", {
           ...data,
           createDateTime: new Date(),
         });
@@ -57,7 +57,7 @@ export const AddArticleForm = ({ handleClose }: Props) => {
     async (data) => {
       try {
         const res = await fetchData(
-          `http://localhost:3001/articles/${inputs.id}`,
+          `${process.env.API_ENDPOINT}/articles/${inputs.id}`,
           "PATCH",
           {
             ...data,
