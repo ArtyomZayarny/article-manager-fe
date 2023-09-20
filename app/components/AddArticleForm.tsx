@@ -29,7 +29,7 @@ export const AddArticleForm = ({ handleClose }: Props) => {
   const handleCreateArticle: SubmitHandler<Inputs> = useCallback(
     async (data) => {
       try {
-        const res = await fetchData(`${process.env.API_ENDPOINT}/articles`, "POST", {
+        const res = await fetchData(`https://article-manager-api-jy2y.onrender.com/articles`, "POST", {
           ...data,
           createDateTime: new Date(),
         });
@@ -57,7 +57,7 @@ export const AddArticleForm = ({ handleClose }: Props) => {
     async (data) => {
       try {
         const res = await fetchData(
-          `${process.env.API_ENDPOINT}/articles/${inputs.id}`,
+          `https://article-manager-api-jy2y.onrender.com/articles/${inputs.id}`,
           "PATCH",
           {
             ...data,

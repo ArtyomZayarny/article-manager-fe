@@ -24,7 +24,7 @@ export default function AdminPage() {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const res = await fetchData(
-        `${process.env.API_ENDPOINT}/authentication/sign-in`,
+        `https://article-manager-api-jy2y.onrender.com/authentication/sign-in`,
         'POST',
         data
       );
