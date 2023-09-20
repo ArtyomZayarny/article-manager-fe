@@ -36,7 +36,7 @@ export const Article = ({ article }: Props) => {
   const handleDelete = async (id: string) => {
     try {
       const res = await fetchData(
-        `${process.env.API_ENDPOINT}/articles/${id}`,
+        `https://article-manager-api-jy2y.onrender.com/articles/${id}`,
         "DELETE"
       );
       deleteArticle(id);
