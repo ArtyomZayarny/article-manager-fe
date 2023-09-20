@@ -24,7 +24,7 @@ export default function AdminPage() {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const res = await fetchData(
-        'http://localhost:3001/authentication/sign-in',
+        `${process.env.API_ENDPOINT}/authentication/sign-in`,
         'POST',
         data
       );
