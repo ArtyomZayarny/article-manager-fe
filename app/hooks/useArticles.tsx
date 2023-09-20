@@ -11,7 +11,7 @@ export const useArticles = () => {
     async function getArticles() {
       try {
         const articles = await fetchData(
-          `${process.env.API_ENDPOINT}/articles`,
+          `https://article-manager-api-jy2y.onrender.com/articles`,
           "GET"
         );
         articles && setArticles(articles);
