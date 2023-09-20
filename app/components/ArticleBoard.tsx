@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo } from "react";
+import { useCallback, useContext, useEffect, useMemo } from "react";
 import { ArticlesContext } from "../context/article-context";
 import { Article } from "./Article";
 import { Panel } from "./Panel";
@@ -16,17 +16,23 @@ export const ArticleBoard = () => {
     }
   }, [searchString]);
 
+
+  const renderEmptyView = useCallback(() => {
+
+    const emptyView = isAdminPage ? <h4>Click plus button to add your first article</h4> :
+      <h2 className={"flex justify-center"}>There is no article to show</h2>
+    return (<>
+    { storedArticles.length === 0 && !loading ? emptyView : ''}
+    </>     
+    )
+  },[storedArticles])
+
   return (
     <div className={"mt-6"}>
       {storedArticles.length > 0 && <Panel />}
       <div className="flex justify-center">
         {loading && <h2>Loading.......</h2>}
-        {storedArticles.length === 0 && isAdminPage ? 
-        (
-          <h4>Click plus button to add your first article</h4>
-        ) : (
-          <h2 className={"flex justify-center"}>There is no article to show</h2>
-        )}
+        {renderEmptyView()}
         <div className="grid grid-cols-3 gap-4 w-full max-w-4xl py-6">
           {storedArticles &&
             storedArticles.map((article) => (
