@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import { ArticlesContextProvider } from './context/article-context';
 
 export default function Home() {
+  //some comment
   return (
     <main>
       <Header>
