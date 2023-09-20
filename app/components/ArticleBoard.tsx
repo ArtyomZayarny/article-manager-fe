@@ -21,7 +21,8 @@ export const ArticleBoard = () => {
       {storedArticles.length > 0 && <Panel />}
       <div className="flex justify-center">
         {loading && <h2>Loading.......</h2>}
-        {isAdminPage ? (
+        {storedArticles.length === 0 && isAdminPage ? 
+        (
           <h4>Click plus button to add your first article</h4>
         ) : (
           <h2 className={"flex justify-center"}>There is no article to show</h2>
