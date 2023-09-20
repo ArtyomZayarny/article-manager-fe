@@ -22,6 +22,7 @@ export default function AdminPage() {
   const [error, setError] = useState('');
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    //some comments
     try {
       const res = await fetchData(
         `${process.env.API_ENDPOINT}/authentication/sign-in`,
