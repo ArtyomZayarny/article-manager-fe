@@ -23,7 +23,7 @@ export const Article = ({ article }: Props) => {
   const isAdminPage = useMemo(() => pathname.includes("admin"), [pathname]);
   const values: Partial<IArticle> = { title, description };
 
-  const handleEdit = (id: string, values: IArticle) => {
+  const handleEdit = (id: string, values: Partial<IArticle>) => {
     setInputs(id, values);
     setModalType("edit");
     setOpen(true);
