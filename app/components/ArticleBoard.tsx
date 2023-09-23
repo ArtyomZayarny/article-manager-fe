@@ -39,7 +39,7 @@ export const ArticleBoard = () => {
           {storedArticles &&
             storedArticles.length > 0 &&
             storedArticles.map((article: IArticle) => (
-              <Article key={article.id} article={article} />
+              <Article key={article.id!} article={article} />
             ))}
         </div>
       </div>
