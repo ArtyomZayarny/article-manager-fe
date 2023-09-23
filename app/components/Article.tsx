@@ -55,17 +55,17 @@ export const Article = ({ article }: Props) => {
         {isAdminPage && (
           <div className={"my-2 justify-between flex"}>
             <ModeEditIcon
-              onClick={() => handleEdit(article.id, values)}
+              onClick={() => handleEdit(article.id!, values)}
               className={"hover:cursor-pointer"}
             />
             <DeleteIcon
-              onClick={() => handleDelete(article.id)}
+              onClick={() => handleDelete(article.id!)}
               className={"hover:cursor-pointer"}
             />
           </div>
         )}
         <span className={"inline-flex text-slate-400 text-xs"}>
-          {formatDate(createDateTime)}
+          {formatDate(createDateTime!)}
         </span>
       </div>
     </div>
