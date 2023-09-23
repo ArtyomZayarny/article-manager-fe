@@ -24,7 +24,7 @@ export const Article = ({ article }: Props) => {
   const values: Partial<IArticle> = { title, description };
 
   const handleEdit = (id: string, values: IArticle) => {
-    setInputs({ id, values });
+    setInputs(id, values);
     setModalType("edit");
     setOpen(true);
   };
