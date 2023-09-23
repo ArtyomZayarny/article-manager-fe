@@ -3,6 +3,7 @@ import { ArticlesContext } from "../context/article-context";
 import { Article } from "./Article";
 import { Panel } from "./Panel";
 import { usePathname } from "next/navigation";
+import { IArticle } from "@/types";
 
 export const ArticleBoard = () => {
   const { storedArticles, loading, searchString, searchArticle } =
@@ -37,7 +38,7 @@ export const ArticleBoard = () => {
         <div className="grid grid-cols-3 gap-4 w-full max-w-4xl py-6">
           {storedArticles &&
             storedArticles.length > 0 &&
-            storedArticles.map((article) => (
+            storedArticles.map((article: IArticle) => (
               <Article key={article.id} article={article} />
             ))}
         </div>

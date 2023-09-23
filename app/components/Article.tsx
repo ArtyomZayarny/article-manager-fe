@@ -11,12 +11,7 @@ import { IArticle } from "@/types";
 import { useRouter } from "next/navigation";
 
 type Props = {
-  article: {
-    id: string;
-    title: string;
-    description: string;
-    createDateTime: string;
-  };
+  article: IArticle;
 };
 
 export const Article = ({ article }: Props) => {
