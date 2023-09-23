@@ -11,6 +11,7 @@ import { IArticle } from "@/types";
 import { useRouter } from "next/navigation";
 
 type Props = {
+  key: string;
   article: IArticle;
 };
 
