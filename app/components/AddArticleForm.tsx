@@ -29,10 +29,14 @@ export const AddArticleForm = ({ handleClose }: Props) => {
   const handleCreateArticle: SubmitHandler<Inputs> = useCallback(
     async (data) => {
       try {
-        const res = await fetchData(`https://article-manager-api-jy2y.onrender.com/articles`, "POST", {
-          ...data,
-          createDateTime: new Date(),
-        });
+        const res = await fetchData(
+          `https://article-manager-api-jy2y.onrender.com/articles`,
+          "POST",
+          {
+            ...data,
+            createDateTime: new Date(),
+          }
+        );
 
         if (res?.statusCode === 401) {
           localStorage.removeItem("accessToken");

@@ -7,6 +7,8 @@ import { ArticlesContext } from "../context/article-context";
 import { ModalContext } from "../context/modal-context";
 import { fetchData } from "../utils/fetchData";
 import { formatDate } from "../utils/formatDate";
+import { IArticle } from "@/types";
+import { useRouter } from "next/navigation";
 
 type Props = {
   article: {
@@ -19,17 +21,16 @@ type Props = {
 
 export const Article = ({ article }: Props) => {
   const { title, description, createDateTime } = article;
+  const router = useRouter();
   const { deleteArticle, articles } = useContext(ArticlesContext);
   const { open, setOpen, setModalType, setInputs } = useContext(ModalContext);
   const pathname = usePathname();
   const isAdminPage = useMemo(() => pathname.includes("admin"), [pathname]);
+  const values: Partial<IArticle> = { title, description };
 
-  const handleEdit = (
-    id: string,
-    values: { title: string; description: string }
-  ) => {
+  const handleEdit = (id: string, values: IArticle) => {
+    setInputs({ id, values });
     setModalType("edit");
-    setInputs(id, values);
     setOpen(true);
   };
 
@@ -39,11 +40,17 @@ export const Article = ({ article }: Props) => {
         `https://article-manager-api-jy2y.onrender.com/articles/${id}`,
         "DELETE"
       );
+      if (res?.statusCode === 401) {
+        localStorage.removeItem("accessToken");
+        router.push("/admin");
+        return;
+      }
       deleteArticle(id);
     } catch (error) {
       console.warn(error);
     }
   };
+
   return (
     <div className="bg-white rounded-md drop-shadow-md p-6 w-full max-w-sm flex flex-col">
       <h3 className={"font-bold text-xl text-[#242424]"}>{article.title}</h3>
@@ -53,7 +60,7 @@ export const Article = ({ article }: Props) => {
         {isAdminPage && (
           <div className={"my-2 justify-between flex"}>
             <ModeEditIcon
-              onClick={() => handleEdit(article.id, { title, description })}
+              onClick={() => handleEdit(article.id, values)}
               className={"hover:cursor-pointer"}
             />
             <DeleteIcon

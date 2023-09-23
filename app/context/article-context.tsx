@@ -31,35 +31,40 @@ export const ArticlesContextProvider = ({ children }: Props) => {
   //Manage articles from DB
   const { articles, loading, setArticles } = useArticles();
   const [dateSort, setDateSort] = useState("newest");
-  const [storedArticles, setStoredArticles] = useState<IArticle[]>([]);
+  const [storedArticles, setStoredArticles] = useState<IArticle[] | null>(null);
   const [searchString, setSearchString] = useState("");
 
   useEffect(() => {
     if (articles.length > 0) {
       setStoredArticles(sortByDate(articles));
     }
+
+    if (articles.length === 0) {
+      setStoredArticles([]);
+    }
   }, [articles]);
 
   const deleteArticle = useCallback(
     (id: string) => {
-      const updatedArticles = articles.filter(
+      const updatedArticles = storedArticles.filter(
         (article: IArticle) => article.id !== id
       );
-      setArticles(updatedArticles);
+      setStoredArticles(updatedArticles);
     },
-    [articles, setArticles]
+    [articles, storedArticles]
   );
 
   const addArticle = useCallback(
     (article: IArticle) => {
-      setArticles((prevArticles) => [...prevArticles, article]);
+      const updatedArticles = [...storedArticles, article];
+      setStoredArticles(updatedArticles);
     },
-    [setArticles]
+    [articles, storedArticles]
   );
 
   const updateArticle = useCallback(
     (id: string, data: IArticle) => {
-      const updatedArticles = articles.map((article) => {
+      const updatedArticles = storedArticles.map((article) => {
         if (article.id === id) {
           article.title = data.title;
           article.description = data.description;
@@ -67,10 +72,9 @@ export const ArticlesContextProvider = ({ children }: Props) => {
         }
         return article;
       });
-
-      setArticles(updatedArticles);
+      setStoredArticles(updatedArticles);
     },
-    [setArticles, articles]
+    [articles, storedArticles]
   );
 
   const searchArticle = useCallback(

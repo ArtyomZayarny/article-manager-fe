@@ -1,6 +1,6 @@
 export interface IArticle {
-  id: string;
-  title: string;
-  description: string;
-  createDateTime: string;
+  id?: string;
+  title?: string;
+  description?: string;
+  createDateTime?: string;
 }
