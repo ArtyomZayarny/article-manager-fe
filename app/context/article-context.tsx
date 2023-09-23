@@ -46,17 +46,17 @@ export const ArticlesContextProvider = ({ children }: Props) => {
 
   const deleteArticle = useCallback(
     (id: string) => {
-      const updatedArticles = storedArticles.filter(
+      const updatedArticles = storedArticles?.filter(
         (article: IArticle) => article.id !== id
       );
-      setStoredArticles(updatedArticles);
+      setStoredArticles(updatedArticles!);
     },
     [articles, storedArticles]
   );
 
   const addArticle = useCallback(
     (article: IArticle) => {
-      const updatedArticles = [...storedArticles, article];
+      const updatedArticles = [...storedArticles!, article];
       setStoredArticles(updatedArticles);
     },
     [articles, storedArticles]
@@ -64,7 +64,7 @@ export const ArticlesContextProvider = ({ children }: Props) => {
 
   const updateArticle = useCallback(
     (id: string, data: IArticle) => {
-      const updatedArticles = storedArticles.map((article) => {
+      const updatedArticles = storedArticles?.map((article) => {
         if (article.id === id) {
           article.title = data.title;
           article.description = data.description;
@@ -72,7 +72,7 @@ export const ArticlesContextProvider = ({ children }: Props) => {
         }
         return article;
       });
-      setStoredArticles(updatedArticles);
+      setStoredArticles(updatedArticles!);
     },
     [articles, storedArticles]
   );
@@ -81,7 +81,7 @@ export const ArticlesContextProvider = ({ children }: Props) => {
     (searchString: string) => {
       setStoredArticles([
         ...articles.filter((article) =>
-          article.title.toLowerCase().includes(searchString.toLowerCase())
+          article.title!.toLowerCase().includes(searchString.toLowerCase())
         ),
       ]);
     },
