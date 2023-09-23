@@ -38,7 +38,7 @@ export const ArticleBoard = () => {
         <div className="grid grid-cols-3 gap-4 w-full max-w-4xl py-6">
           {storedArticles &&
             storedArticles.length > 0 &&
-            storedArticles.map((article) => (
+            storedArticles!.map((article) => (
               <Article key={article?.id} article={article} />
             ))}
         </div>
