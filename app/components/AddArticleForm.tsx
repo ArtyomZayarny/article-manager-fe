@@ -94,7 +94,7 @@ export const AddArticleForm = ({ handleClose }: Props) => {
       setValue("title", inputs?.values.title);
       setValue("description", inputs?.values.description);
     }
-  }, [modalType]);
+  }, [modalType, inputs]);
 
   const title = modalType === "add" ? "Add new article" : "Edit article";
 
