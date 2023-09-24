@@ -15,7 +15,7 @@ type ModalContextType = {
       description: string;
     };
   };
-  setInputs: (id: string, values: Partial<IArticle>) => void;
+  setInputs: (data: { id: string; values: Partial<IArticle> }) => void;
 };
 
 export const ModalContext = createContext({} as unknown as ModalContextType);

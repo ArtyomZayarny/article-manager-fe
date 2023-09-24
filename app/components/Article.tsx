@@ -22,10 +22,9 @@ export const Article = ({ article }: Props) => {
   const { open, setOpen, setModalType, setInputs } = useContext(ModalContext);
   const pathname = usePathname();
   const isAdminPage = useMemo(() => pathname.includes("admin"), [pathname]);
-  const values: Partial<IArticle> = { title, description };
 
-  const handleEdit = (id: string, values: Partial<IArticle>) => {
-    setInputs(id, values);
+  const handleEdit = (id: string, values1: Partial<IArticle>) => {
+    setInputs({ id, values });
     setModalType("edit");
     setOpen(true);
   };
@@ -46,6 +45,8 @@ export const Article = ({ article }: Props) => {
       console.warn(error);
     }
   };
+
+  const values: Partial<IArticle> = { title, description };
 
   return (
     <div className="bg-white rounded-md drop-shadow-md p-6 w-full max-w-sm flex flex-col">
