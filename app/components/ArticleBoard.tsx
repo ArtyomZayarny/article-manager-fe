@@ -14,7 +14,7 @@ export const ArticleBoard = () => {
     if (searchString) {
       searchArticle(searchString);
     }
-  }, [searchString, storedArticles]);
+  }, [searchString]);
 
   const renderEmptyView = useCallback(() => {
     const emptyView = isAdminPage ? (

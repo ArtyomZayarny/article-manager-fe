@@ -79,13 +79,16 @@ export const ArticlesContextProvider = ({ children }: Props) => {
 
   const searchArticle = useCallback(
     (searchString: string) => {
-      setStoredArticles([
+      const searchArticles = [
         ...articles.filter((article) =>
           article.title!.toLowerCase().includes(searchString.toLowerCase())
         ),
-      ]);
+      ];
+      const foundedArticles =
+        searchArticles.length > 0 ? searchArticles : articles;
+      setStoredArticles(foundedArticles);
     },
-    [articles, setArticles]
+    [articles]
   );
 
   const sortArticleByDate = useCallback(() => {

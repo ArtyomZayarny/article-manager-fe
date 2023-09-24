@@ -81,6 +81,9 @@ export const AddArticleForm = ({ handleClose }: Props) => {
         //update articles list in context
         updateArticle(inputs.id, res);
         handleClose();
+        setModalType("add");
+        setValue("title", "");
+        setValue("description", "");
       } catch (error) {
         console.warn(error);
       }
