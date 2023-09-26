@@ -49,6 +49,7 @@ export const ArticlesContextProvider = ({ children }: Props) => {
       const updatedArticles = storedArticles?.filter(
         (article: IArticle) => article.id !== id
       );
+      setArticles(updatedArticles!)
       setStoredArticles(updatedArticles!);
     },
     [articles, storedArticles]
@@ -57,6 +58,7 @@ export const ArticlesContextProvider = ({ children }: Props) => {
   const addArticle = useCallback(
     (article: IArticle) => {
       const updatedArticles = [...storedArticles!, article];
+      setArticles(updatedArticles)
       setStoredArticles(updatedArticles);
     },
     [articles, storedArticles]
@@ -72,6 +74,7 @@ export const ArticlesContextProvider = ({ children }: Props) => {
         }
         return article;
       });
+      setArticles(updatedArticles!)
       setStoredArticles(updatedArticles!);
     },
     [articles, storedArticles]
